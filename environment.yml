@@ -1,0 +1,42 @@
+name: tribal-water
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  # Geospatial
+  - geopandas>=0.14
+  - shapely>=2.0
+  - pyproj>=3.6
+  - fiona>=1.9
+  - rioxarray>=0.15
+  # Data access
+  - requests>=2.31
+  - dataretrieval>=1.0      # USGS NWIS programmatic access
+  - netcdf4>=1.6            # OPeNDAP for MACAv2
+  - xarray>=2023.6
+  # Data
+  - pandas>=2.0
+  - numpy>=1.24
+  - scipy>=1.11
+  - openpyxl>=3.1          # Excel template read/write
+  - pyarrow>=12.0          # Parquet for pipeline outputs
+  # Visualization
+  - matplotlib>=3.7
+  - seaborn>=0.12
+  - contextily>=1.4
+  - folium>=0.14           # Interactive maps in notebooks
+  # Dashboard
+  - streamlit>=1.32
+  - pydeck>=0.8            # Map layer in Streamlit
+  # Config utilities
+  - pyyaml>=6.0
+  - tenacity>=8.2
+  - python-dotenv>=1.0
+  # Notebooks
+  - jupyter>=1.0
+  - jupyterlab>=4.0
+  - ipykernel>=6.0
+  # Pipeline
+  - pip:
+    - pydap==3.5.9         # OPeNDAP fallback engine

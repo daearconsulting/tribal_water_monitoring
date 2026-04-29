@@ -1,0 +1,115 @@
+# tribal_water_monitoring configuration
+
+# All configurable parameters live here.
+# To adapt this system for a different Tribal Nation:
+#   1. Update usgs_sites with gauges near your territory
+#   2. Update bounding_box for your region
+#   3. Update thresholds in consultation with water office staff
+
+
+# Tribal context (set these for your own Nation)
+nation:
+  primary:    "Oglala Lakota"            
+  secondary:  "Sicangu Lakota"           
+  collective: "Oceti Sakowin"            
+
+# Bounding box (WGS84: min_lon, min_lat, max_lon, max_lat)
+# Covers Pine Ridge, Rosebud, and surrounding Oceti Sakowin Lands
+# Change the bounding box coordinates to fit your desired study area
+bounding_box:
+  west:  -104.5
+  south:  42.3
+  east:   -96.4
+  north:  46.5
+
+# USGS NWIS streamflow gauge sites
+# Site IDs near Pine Ridge and Rosebud, update for your territory
+# Find sites at: https://waterdata.usgs.gov/nwis
+usgs_streamflow_sites:
+  - "06447000"   # White River near Oglala, SD
+  - "06440000"   # Niobrara River near Chadron, NE (upstream context)
+  - "06447500"   # White River near Oacoma, SD (downstream context)
+
+# USGS NWIS groundwater well sites 
+# USGS monitoring wells near Pine Ridge/Rosebud
+# Sparse coverage: see docs/data_sovereignty.md for context on monitoring gaps
+usgs_groundwater_sites:
+  - "425957102193601"   # example: replace with actual USGS well site IDs
+  - "432301102574701"   # in your territory
+
+# USGS NWIS water quality sites 
+usgs_wq_sites:
+  - "06447000"   # White River near Oglala (WQ and streamflow)
+
+# Analysis period
+analysis:
+  start_year: 2000
+  end_year:   2024
+  base_period_start: 2000   # for anomaly/percentile calculations
+  base_period_end:   2020
+
+# Drought/streamflow thresholds
+# These should be reviewed and confirmed with Tribal water staff
+# Units: cfs (cubic feet per second) for streamflow
+thresholds:
+  streamflow:
+    normal_cfs:    50     # above this = normal
+    watch_cfs:     20     # between watch and normal = watch
+    emergency_cfs:  5    # below this = emergency
+
+# Groundwater thresholds 
+# depth_to_water_ft: depth below ground surface (larger = deeper = worse)
+# Decline rate: ft/month trigger for "Declining" flag
+  groundwater:
+    decline_rate_ft_per_month: 0.5   # threshold for flagging declining trend
+    critical_pct:               10    # bottom N% of historical levels = Critical
+    recovery_pct:               90    # top N% = Recovering (above long-term trend)
+
+# Water quality thresholds (EPA MCLs and Tribal priorities) 
+# MCL = Maximum Contaminant Level (EPA drinking water standards)
+# Adjust secondary parameters based on local conditions
+  water_quality:
+    nitrate_mgl:     10.0    # EPA MCL
+    arsenic_ugl:     10.0    # EPA MCL
+    tds_mgl:        500.0    # EPA secondary standard
+    ph_min:           6.5
+    ph_max:           8.5
+    turbidity_ntu:    1.0    # drinking water
+    fluoride_mgl:     4.0    # EPA MCL
+
+# Drought index thresholds (PDSI) 
+  drought:
+    moderate:  -2.0    # PDSI ≤ -2.0 = moderate drought
+    severe:    -3.0    # PDSI ≤ -3.0 = severe drought
+    extreme:   -4.0    # PDSI ≤ -4.0 = extreme drought
+
+# Compound Water Stress Index weights (Notebook 06) 
+# Must sum to 1.0
+stress_index_weights:
+  groundwater:  0.40
+  streamflow:   0.30
+  drought:      0.30
+
+# Pipeline data paths 
+paths:
+  raw:         data/raw
+  cache:       data/cache
+  processed:   data/processed
+  templates:   data/templates
+  outputs:     outputs
+  figures:     outputs/figures
+
+# Dashboard settings
+dashboard:
+  title:         "Tribal Water Monitoring"
+  center_lat:    43.3
+  center_lon:   -102.5
+  zoom:           8
+  map_style:     "light"
+
+# Data sovereignty
+governance:
+  ocap:    "https://fnigc.ca/ocap-training/"
+  care:    "https://www.gida-global.org/care"
+  fair:    "https://www.go-fair.org/fair-principles/"
+  ieee_2890: "https://standards.ieee.org/ieee/2890/10318/"

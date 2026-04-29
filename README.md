@@ -2,7 +2,7 @@
 **Author:** Lilly Jones, PhD, Daear Consulting, LLC
 
 **Primary Demonstration Sites:** Pine Ridge (Oglala Lakota) and Rosebud (Sicangu Lakota), Oceti Sakowin
-  
+
 **License:**  AGPL-3.0 license
 
 ## Overview
@@ -130,8 +130,8 @@ No data is committed to this repository.
 Tribal-collected data lives in `data/raw/` and is never committed.
 See `data/templates/` for blank Excel templates:
 
-- `groundwater_template.xlsx` — well level measurements
-- `water_quality_template.xlsx` — water quality sampling data
+- `groundwater_template.xlsx` well level measurements
+- `water_quality_template.xlsx` water quality sampling data
 
 See `docs/data_intake_guide.md` for field staff instructions.
 
