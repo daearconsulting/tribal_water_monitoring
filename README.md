@@ -1,6 +1,8 @@
 # Tribal Water Monitoring
-**Author:** Lilly Jones, PhD, Daear Consulting, LLC 
-**Primary Demonstration Sites:** Pine Ridge (Oglala Lakota) and Rosebud (Sicangu Lakota), Oceti Sakowin  
+**Author:** Lilly Jones, PhD, Daear Consulting, LLC
+
+**Primary Demonstration Sites:** Pine Ridge (Oglala Lakota) and Rosebud (Sicangu Lakota), Oceti Sakowin
+  
 **License:**  AGPL-3.0 license
 
 ## Overview
